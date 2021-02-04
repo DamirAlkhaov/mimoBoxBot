@@ -22,8 +22,8 @@ async def on_message(message):
     await message.channel.send('**MimoBox Bot Help Menu**'
     '```'
     'mb!info - gives the info about a bot'
-    'mb!verify - verifies player'
-    'mb!user {username} - gives info about a user'
+    'mb!love - gives you lots of love!'
+    
     '```')
   if message.content.startswith('mb!love'):
     user = 'I love you alot ' + str(message.author) + '!'
