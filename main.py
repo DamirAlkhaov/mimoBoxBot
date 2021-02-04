@@ -25,5 +25,8 @@ async def on_message(message):
     'mb!verify - verifies player'
     'mb!user {username} - gives info about a user'
     '```')
+  if message.content.startswith('mb!love'):
+    user = 'I love you ' + str(message.author) + '!'
+    await message.channel.send(user)
 
 client.run(os.getenv('TOKEN'))
