@@ -6,7 +6,7 @@ client = discord.Client()
 @client.event
 async def on_ready():
   print('logged in as {0.user}'.format(client))
-  activity = discord.Game(name="Listening for mb!help")
+  activity = discord.Activity(type=discord.ActivityType.watching, name='for mb!help')
   await client.change_presence(status=discord.Status.online, activity=activity)
 
 @client.event
