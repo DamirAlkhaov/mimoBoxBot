@@ -15,7 +15,7 @@ async def on_message(message):
     return
   
   if message.content.startswith('mb!info'):
-    user = 'This is MimoBox Bot! Running on as ' + str(client.user)
+    user = 'This is MimoBox Bot! Thank you for asking ' + str(message.author)
     await message.channel.send(user)
 
   if message.content.startswith('mb!help'):
