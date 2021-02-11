@@ -34,12 +34,7 @@ async def on_message(message):
   
 
   if message.content.startswith('mb!help'):
-    await message.channel.send('**MimoBox Bot Help Menu**'
-    '```'
-    'mb!info - gives the info about a bot'
-    'mb!love - gives you lots of love!'
-    
-    '```')
+    await message.channel.send('***Help Menu***\n```\nmb!info (id) - Gives info about a MimoBox User\n```')
   
   if message.content.startswith('mb!info'):
     chosen_id = message.content.split('mb!info ',1)[1]
