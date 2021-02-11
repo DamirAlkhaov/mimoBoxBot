@@ -2,6 +2,7 @@ import discord
 import os
 import requests
 import json
+from ping import ping
 
 client = discord.Client()
 
@@ -48,5 +49,5 @@ async def on_message(message):
     else:
       await message.channel.send("Error : ID doesn't exist")
   
-
+ping()
 client.run(os.getenv('TOKEN'))
