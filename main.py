@@ -60,7 +60,7 @@ async def on_message(message):
         return
 
     if message.content.startswith('mb!help'):
-        embed = discord.Embed(title='Commands', color=discord.Colour.yellow())
+        embed = discord.Embed(title='Commands', color=discord.Colour.green())
         embed.add_field(
             name="User Commands:",
             value="**mb!info (id)**: Gives info about a MimoBox User.")
