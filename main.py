@@ -2,22 +2,26 @@ import discord
 import os
 import requests
 import json
+from datetime import datetime
 from ping import ping
 
 client = discord.Client()
 
-def get_UserInfo(id):
+def get_UserInfo(id, user):
   url = os.getenv('GetUserById') + id
   response = requests.get(url)
   json_Data = json.loads(response.text)
   if 'username' in json_Data:
     join_date = json_Data['created']
     join_date_short = join_date[:10]
-    infoGet = 'Username: ' + json_Data['username'] + ', Join Date: ' + join_date_short
-    return(infoGet)
+    infoGet = 'Username: ' + json_Data['username'] + '\n Join Date: ' + join_date_short
+    embed = discord.Embed(title = json_Data['username'], description = infoGet, color = discord.Colour.green())
+    embed.set_footer(text = 'Request by: ' + user.name + ' | ' + str(datetime.now()), icon_url = user.avatar_url)
+    return(embed)
   else:
     infoGet = 'Error '+ json_Data['status'] +' : ' + json_Data['message']
-    return(infoGet)
+    embed = discord.Embed(title = "Error "+ json_Data['status'], description = json_Data['message'], color = discord.Colour.red())
+    return(embed)
   
 
 @client.event
@@ -34,13 +38,15 @@ async def on_message(message):
   
 
   if message.content.startswith('mb!help'):
-    await message.channel.send('***Help Menu***\n```\nmb!info (id) - Gives info about a MimoBox User\n```')
+    embed = discord.Embed(title = 'Commands', color = discord.Colour.red())
+    embed.add_field(name="User Commands:", value="**mb!info (id)**: Gives info about a MimoBox User.")
+    await message.channel.send(embed=embed)
   
   if message.content.startswith('mb!info'):
     chosen_id = message.content.split('mb!info ',1)[1]
-    gotten_info = get_UserInfo(chosen_id)
+    gotten_info = get_UserInfo(chosen_id, message.author)
     if gotten_info:
-      await message.channel.send(gotten_info)
+      await message.channel.send(embed=gotten_info)
     else:
       await message.channel.send("Error : ID doesn't exist")
   
