@@ -23,6 +23,8 @@ def get_UserInfo(id, user):
           user_Banned = ':x: Banned'
         else:
           user_Banned = ':white_check_mark: Not Banned'
+        if not json_Data['hash'] == "":
+          avatarimg = os.getenv('avatarlink') + json_Data['hash'] + ".png"
         join_date = json_Data['created']
         join_date_short = join_date[:10]
         infoGet = 'Username: ' + json_Data[
@@ -30,6 +32,9 @@ def get_UserInfo(id, user):
         embed = discord.Embed(title=json_Data['username'],
                               description=infoGet,
                               color=discord.Colour.green())
+        if not json_Data['hash'] == "":
+          avatarimg = os.getenv('avatarlink') + json_Data['hash'] + ".png"
+          embed.set_image(url=avatarimg)
         embed.set_footer(text='Request by: ' + user.name + ' | ' +
                          str(datetime.now()),
                          icon_url=user.avatar_url)
