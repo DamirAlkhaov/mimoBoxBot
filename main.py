@@ -1,6 +1,7 @@
 import discord
 import os
 import requests
+import random
 import json
 from datetime import datetime
 from ping import ping
@@ -33,7 +34,7 @@ def get_UserInfo(id, user):
                               description=infoGet,
                               color=discord.Colour.green())
         if not json_Data['hash'] == "":
-          avatarimg = os.getenv('avatarlink') + json_Data['hash'] + ".png"
+          avatarimg = os.getenv('avatarlink') + json_Data['hash'] + ".png?r="
           embed.set_image(url=avatarimg)
         embed.set_footer(text='Request by: ' + user.name + ' | ' +
                          str(datetime.now()),
